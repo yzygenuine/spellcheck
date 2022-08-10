@@ -1,0 +1,36 @@
+<assembly>
+	<id>deploy</id>
+	<baseDirectory></baseDirectory>
+	<formats>
+		<format>tar.gz</format>
+	</formats>
+	<dependencySets>
+		<dependencySet>
+			<useProjectArtifact>true</useProjectArtifact>
+			<outputDirectory>lib</outputDirectory>
+		</dependencySet>
+	</dependencySets>
+	<fileSets>
+		<fileSet>
+			<directory>src/main/resources/${lz.env}/</directory>
+			<outputDirectory>/conf</outputDirectory>
+			<includes>
+				<include>*</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>src/main/resources/conf/</directory>
+			<outputDirectory>/conf</outputDirectory>
+			<includes>
+				<include>/**/*</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>script/${lz.env}/</directory>
+			<outputDirectory>/</outputDirectory>
+			<includes>
+				<include>*</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+</assembly>
