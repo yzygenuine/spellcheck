@@ -5,7 +5,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-	<bean id="ds" destroy-method="close"
+<!-- 	<bean id="ds" destroy-method="close"
 		class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url"
@@ -16,15 +16,15 @@
 		<property name="maxIdle" value="30"></property>
 		<property name="validationQuery" value="select 1" />
 		<property name="testWhileIdle" value="true" />
-	</bean>
+	</bean> -->
 
 
-	<bean id="dao" class="com.yzy.dao.DbManager">
+	<!-- <bean id="dao" class="com.yzy.dao.DbManager">
 		<property name="dataSource" ref="ds"></property>
 		<property name="minLimitNum" value="10"></property>
 	</bean>
 	<bean id="fileDao" class="com.yzy.dao.WordsFileDao">
-	</bean>
+	</bean> -->
 </beans>
 
  

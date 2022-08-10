@@ -34,7 +34,6 @@ import com.yzy.spelling.util.DateUtil;
  * 
  * @author yzy
  */
-@Service("wordsFileDao")
 public class WordsDbDao implements WordsDao {
 	static final Logger logger = LoggerFactory.getLogger(WordsDbDao.class);
 	private JdbcTemplate jdbc;

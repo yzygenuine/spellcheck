@@ -11,7 +11,6 @@ import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Service;
 
 import com.yzy.spelling.index.Document;
-@Service("wordsFileDao")
 public class WordsFileDao implements WordsDao{
 
 	public static String wordsFile = "./name.txt";
