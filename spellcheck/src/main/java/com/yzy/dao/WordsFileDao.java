@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import com.yzy.spelling.index.Document;
 public class WordsFileDao implements WordsDao{
 
-	public static String wordsFile = "./name.txt";
+	public static String wordsFile = "./dict/name.txt";
 
 	public static void main(String[] args) {
 		WordsFileDao dao = new WordsFileDao();
