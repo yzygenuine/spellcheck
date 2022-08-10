@@ -64,7 +64,6 @@ public class SpellcheckApp {
 	 */
 	public String spellcheck(@RequestParam(value = "input", defaultValue = "") String input,@RequestParam(value = "type", defaultValue = "pinyin") String type,
 			@RequestParam(value = "sugNum", defaultValue = "5") int sugNum) {
-		
 		logger.debug("input:"+input+",type:"+type+",sugNum:"+sugNum);
 		SpellCheck spell=pinyinSpellcheck;
 		if("cn".equals(type)) {
@@ -109,7 +108,6 @@ public class SpellcheckApp {
 		List<Document> list = dao.readAllData();
 		logger.info("全部词汇量：" + list.size());
 		Index index = Index.getInstance();
-		
 		index.buildIndex(list);
 //		index.buildPinYinIndex(list);
 		list.clear();
