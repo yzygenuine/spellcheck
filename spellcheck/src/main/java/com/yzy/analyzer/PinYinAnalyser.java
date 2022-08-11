@@ -32,13 +32,58 @@ public class PinYinAnalyser extends Analyzer {
 	
 	public static void main(String[] args) {
 		PinYinAnalyser s = new PinYinAnalyser();
-		List<Token> py = s.process("zhongguo".toCharArray());
+//		List<Token> py = s.process("zhongguo".toCharArray());
+//		for (Token token : py) {
+//			System.out.println(token.value);
+//
+//		}
+		List<Token> py = s.process("人民 解放军".toCharArray());
 		for (Token token : py) {
 			System.out.println(token.value);
 
 		}
 	}
+	/**
+	 * 返回拼音全称和拼音缩写的List<token>，其中拼音间不存在间隔
+	 * 
+	 * @param inputChar
+	 * @return List<token>: pinyin and py
+	 */
+	@Override
+	public List<Token> process(char[] inputChar) {
+		List<Token> list = _process(inputChar);
+		Token pinyinAll = new Token();
+//		Token pinyinShort = new Token();
+		Token pinyinFilterG = new Token();// 去掉ang,ing,ong中的g
+		StringBuffer pinyin = new StringBuffer();
+		StringBuffer pinyinNG = new StringBuffer();
+//		StringBuffer py = new StringBuffer();
+		for (Token tt : list) {
+			pinyin.append(tt.value);
+			int indexG = tt.value.indexOf("g");
+			if (indexG > 0) {
+				pinyinNG.append(tt.value.substring(0, tt.value.length() - 1));
+			} else {
+				pinyinNG.append(tt.value);
+			}
+//			py.append(tt.value.charAt(0));
+		}
+		pinyinAll.value = pinyin.toString();
+		pinyinAll.type = Analyzer.ALPHA;
+//		pinyinShort.value = py.toString();
+//		pinyinShort.type = Analyzer.ALPHA;
 
+		List<Token> result = new ArrayList<Token>();
+		if (!pinyinNG.toString().equals(pinyin.toString())) {
+			pinyinFilterG.value = pinyinNG.toString();
+			pinyinFilterG.type = Analyzer.ALPHA;
+			result.add(pinyinFilterG);
+		}
+		result.add(pinyinAll);
+//		result.add(pinyinShort);
+
+		return result;
+	}
 	/**
 	 * 拼音转中文的处理，查找拼音词典，查出对应拼音<br/>
 	 * 注意要先调用setInputChar(char[]),把字符转为纯字母
@@ -107,47 +152,7 @@ public class PinYinAnalyser extends Analyzer {
 		return result.toString();
 	}
 
-	/**
-	 * 返回拼音全称和拼音缩写的List<token>，其中拼音间不存在间隔
-	 * 
-	 * @param inputChar
-	 * @return List<token>: pinyin and py
-	 */
-	@Override
-	public List<Token> process(char[] inputChar) {
-		List<Token> list = _process(inputChar);
-		Token pinyinAll = new Token();
-//		Token pinyinShort = new Token();
-		Token pinyinFilterG = new Token();// 去掉ang,ing,ong中的g
-		StringBuffer pinyin = new StringBuffer();
-		StringBuffer pinyinNG = new StringBuffer();
-//		StringBuffer py = new StringBuffer();
-		for (Token tt : list) {
-			pinyin.append(tt.value);
-			int indexG = tt.value.indexOf("g");
-			if (indexG > 0) {
-				pinyinNG.append(tt.value.substring(0, tt.value.length() - 1));
-			} else {
-				pinyinNG.append(tt.value);
-			}
-//			py.append(tt.value.charAt(0));
-		}
-		pinyinAll.value = pinyin.toString();
-		pinyinAll.type = Analyzer.ALPHA;
-//		pinyinShort.value = py.toString();
-//		pinyinShort.type = Analyzer.ALPHA;
-
-		List<Token> result = new ArrayList<Token>();
-		if (!pinyinNG.toString().equals(pinyin.toString())) {
-			pinyinFilterG.value = pinyinNG.toString();
-			pinyinFilterG.type = Analyzer.ALPHA;
-			result.add(pinyinFilterG);
-		}
-		result.add(pinyinAll);
-//		result.add(pinyinShort);
-
-		return result;
-	}
+	
 
 	private List<Token> str2token(String string) {
 		List<Token> list = new ArrayList<Token>();

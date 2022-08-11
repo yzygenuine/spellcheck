@@ -24,6 +24,15 @@ public class SimpePinyinAnalyzer extends Analyzer {
 		outputFormat.setVCharType(HanyuPinyinVCharType.WITH_V);
 		outputFormat.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
 	}
+	
+	public static void main(String[] args) {
+		SimpePinyinAnalyzer s = new SimpePinyinAnalyzer();
+		List<Token> py = s.process("人民 解放军".toCharArray());
+		for (Token token : py) {
+			System.out.println(token.value);
+
+		}
+	}
 
 	/**
 	 * 得到拼音串的缩写,取每个拼音的第一个字母
@@ -34,10 +43,10 @@ public class SimpePinyinAnalyzer extends Analyzer {
 	private String getPinyinShort(String py) {
 		StringBuffer sb = new StringBuffer();
 		String[] pyArray = py.split(" ");
-		int i = 0;
-		while (i < pyArray.length) {
-			sb.append(pyArray[i].substring(0, 1));
-			i++;
+		for (String p : pyArray) {
+			if(p.length()>0) {
+			   sb.append(p.substring(0, 1));
+			}
 		}
 		return sb.toString();
 	}
@@ -68,13 +77,6 @@ public class SimpePinyinAnalyzer extends Analyzer {
 		return list;
 	}
 
-	public static void main(String[] args) {
-		SimpePinyinAnalyzer s = new SimpePinyinAnalyzer();
-		List<Token> py = s.process("中国".toCharArray());
-		for (Token token : py) {
-			System.out.println(token.value);
 
-		}
-	}
 
 }
