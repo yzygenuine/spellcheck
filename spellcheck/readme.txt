@@ -11,4 +11,4 @@ http://${host}:${post}/status?oper=reload
 
 
 拼写检查的请求URL
-http://${host}:${post}/spellcheck?input=${word}&sugNum=10
+http://${host}:${post}/spellcheck?input=${word}&sugNum=10&type=cn

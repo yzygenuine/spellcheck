@@ -67,6 +67,7 @@ public class SpellcheckApp {
 		logger.debug("input:"+input+",type:"+type+",sugNum:"+sugNum);
 		SpellCheck spell=pinyinSpellcheck;
 		if("cn".equals(type)) {
+			System.out.println("中文拼写检查");
 			spell=cnSpellcheck;
 		}
 		return spellcheckHandle(input, sugNum,spell);

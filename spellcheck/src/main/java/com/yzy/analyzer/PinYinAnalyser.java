@@ -38,6 +38,8 @@ public class PinYinAnalyser extends Analyzer {
 //
 //		}
 		List<Token> py = s.process("人民 解放军".toCharArray());
+		
+		System.out.println(py.size());
 		for (Token token : py) {
 			System.out.println(token.value);
 
@@ -53,11 +55,11 @@ public class PinYinAnalyser extends Analyzer {
 	public List<Token> process(char[] inputChar) {
 		List<Token> list = _process(inputChar);
 		Token pinyinAll = new Token();
-//		Token pinyinShort = new Token();
+		Token pinyinShort = new Token();
 		Token pinyinFilterG = new Token();// 去掉ang,ing,ong中的g
 		StringBuffer pinyin = new StringBuffer();
 		StringBuffer pinyinNG = new StringBuffer();
-//		StringBuffer py = new StringBuffer();
+		StringBuffer py = new StringBuffer();
 		for (Token tt : list) {
 			pinyin.append(tt.value);
 			int indexG = tt.value.indexOf("g");
@@ -66,12 +68,12 @@ public class PinYinAnalyser extends Analyzer {
 			} else {
 				pinyinNG.append(tt.value);
 			}
-//			py.append(tt.value.charAt(0));
+			py.append(tt.value.charAt(0));
 		}
 		pinyinAll.value = pinyin.toString();
 		pinyinAll.type = Analyzer.ALPHA;
-//		pinyinShort.value = py.toString();
-//		pinyinShort.type = Analyzer.ALPHA;
+		pinyinShort.value = py.toString();
+		pinyinShort.type = Analyzer.ALPHA;
 
 		List<Token> result = new ArrayList<Token>();
 		if (!pinyinNG.toString().equals(pinyin.toString())) {
@@ -80,7 +82,7 @@ public class PinYinAnalyser extends Analyzer {
 			result.add(pinyinFilterG);
 		}
 		result.add(pinyinAll);
-//		result.add(pinyinShort);
+		result.add(pinyinShort);
 
 		return result;
 	}
