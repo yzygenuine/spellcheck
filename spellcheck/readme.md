@@ -4,6 +4,7 @@
 
 ## 设计
 * 中文拼写检查
+
   ![图片](https://github.com/yzygenuine/spellcheck/blob/master/spellcheck/docs/images/pinyin_spell.jpg)
 
 * 拼音拼写检查
