@@ -29,11 +29,12 @@
 * 拼音拼写检查
 
   ![图片](./docs/images/pinyin_spell.jpg)
+  
    <a href="./docs/spell.md">可再看docs下文档spell.md🔗</a>
    
 * 索引结构的设计与构建 
 
- <a href="./docs/index.md">可再看docs下文档index.md🔗</a>
+   <a href="./docs/index.md">可再看docs下文档index.md🔗</a>
 
 * 词库更新与维护 --暂时只是提供简单的词库文件，正常业务需要根据场景设计，如对每天的搜索query清洗提炼，主要对当下热度的词可以快速感知
   
